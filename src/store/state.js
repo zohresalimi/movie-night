@@ -1,5 +1,5 @@
 const state = {
-  movies: {},
+  movies: [],
   watchLater: {},
   favoriteList: {},
 };

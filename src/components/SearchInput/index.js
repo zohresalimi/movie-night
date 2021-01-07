@@ -1,7 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import { Input } from "semantic-ui-react";
 import axios from "axios";
 import debounce from "../../utils/debounce";
+import AppContext from "../../store/context";
+
+import { SET_MOVIES_REDUCER } from "../../constants";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 const apiKey = process.env.REACT_APP_API_Key;
@@ -18,6 +21,7 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 export default function SearchInput() {
+  const { state, dispatch } = useContext(AppContext);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -29,6 +33,9 @@ export default function SearchInput() {
         params: { query: value },
       });
       setMovies(result.data);
+      if (result) {
+        dispatch({ type: SET_MOVIES_REDUCER, data: result.data });
+      }
     } catch (err) {
       console.log(err);
       setIsError(true);
