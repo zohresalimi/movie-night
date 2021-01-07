@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from "react";
+import { Container } from "semantic-ui-react";
 
 import AppContext from "./store/context";
 import store from "./store";
@@ -35,10 +36,12 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ state, dispatch }}>
-        Movie Night
-        <SearchPage />
-      </AppContext.Provider>
+      <Container>
+        <AppContext.Provider value={{ state, dispatch }}>
+          Movie Night
+          <SearchPage />
+        </AppContext.Provider>
+      </Container>
     </div>
   );
 }

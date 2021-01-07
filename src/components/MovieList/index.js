@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
-import { Grid, Card, Icon, Image } from "semantic-ui-react";
+import React, { useContext, useState } from "react";
+import { Grid } from "semantic-ui-react";
 
 import AppContext from "../../store/context";
 
+import CardItem from "../CardItem";
+
 export default function MovieList() {
   const { state, dispatch } = useContext(AppContext);
-  const { apiConfig } = state;
+
   return (
     <div>
       <Grid>
@@ -13,17 +15,7 @@ export default function MovieList() {
           <Grid.Row>
             {state.movies.results.map((item) => (
               <Grid.Column mobile={16} tablet={8} computer={4} key={item.id}>
-                <Card>
-                  <Image
-                    src={`${apiConfig.secure_base_url}/${apiConfig.poster_sizes[4]}/${item.poster_path}`}
-                    wrapped
-                    size="small"
-                    ui={false}
-                  />
-                  <Card.Content>
-                    <Card.Header>{item.title}</Card.Header>
-                  </Card.Content>
-                </Card>
+                <CardItem item={item} />
               </Grid.Column>
             ))}
           </Grid.Row>
