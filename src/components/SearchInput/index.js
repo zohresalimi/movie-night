@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { Input } from "semantic-ui-react";
 import axios from "axios";
+import debounce from "../../utils/debounce";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 const apiKey = process.env.REACT_APP_API_Key;
@@ -18,34 +19,31 @@ axiosInstance.interceptors.request.use((config) => {
 
 export default function SearchInput() {
   const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState({ value: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const result = await axiosInstance.get("/", {
-          params: { query: searchTerm.value },
-        });
-        setMovies(result.data);
-      } catch (err) {
-        console.log(err);
-        setIsError(true);
-      }
-      setIsLoading(false);
-    };
-    if (searchTerm.value) {
-      fetchData();
+  const fetchData = async (value) => {
+    try {
+      setIsLoading(true);
+      const result = await axiosInstance.get("/", {
+        params: { query: value },
+      });
+      setMovies(result.data);
+    } catch (err) {
+      console.log(err);
+      setIsError(true);
     }
-  }, [searchTerm, searchTerm.value]);
+    setIsLoading(false);
+  };
+
+  const getMoviesByTerms = useMemo(() => debounce(fetchData, 400), []);
+
   return (
     <div>
       <Input
         icon="search"
         placeholder="Search..."
-        onChange={(e) => setSearchTerm({ value: e.target.value })}
+        onChange={(e) => getMoviesByTerms(e.target.value)}
       />
       {isError && <div>Something went wrong ...</div>}
       {isLoading ? <div>Loading ...</div> : ""}
