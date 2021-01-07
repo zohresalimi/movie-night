@@ -21,8 +21,7 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 export default function SearchInput() {
-  const { state, dispatch } = useContext(AppContext);
-  const [movies, setMovies] = useState([]);
+  const { dispatch } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -32,7 +31,6 @@ export default function SearchInput() {
       const result = await axiosInstance.get("/", {
         params: { query: value },
       });
-      setMovies(result.data);
       if (result) {
         dispatch({ type: SET_MOVIES_REDUCER, data: result.data });
       }
@@ -54,15 +52,6 @@ export default function SearchInput() {
       />
       {isError && <div>Something went wrong ...</div>}
       {isLoading ? <div>Loading ...</div> : ""}
-      {movies && movies.results && (
-        <ul>
-          {movies.results.map((item) => (
-            <li key={item.id}>
-              <a href={item}>{item.title}</a>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }

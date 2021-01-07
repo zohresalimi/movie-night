@@ -4,6 +4,7 @@ import AppContext from "./store/context";
 import store from "./store";
 // components
 import SearchInpput from "./components/SearchInput";
+import MovieList from "./components/MovieList";
 
 function App() {
   const [state, dispatch] = useReducer(store.reducer, store.state);
@@ -12,6 +13,7 @@ function App() {
       <AppContext.Provider value={{ state, dispatch }}>
         Movie Night
         <SearchInpput />
+        <MovieList />
       </AppContext.Provider>
     </div>
   );
