@@ -4,17 +4,17 @@ import { Card, Image, Button, Dimmer } from "semantic-ui-react";
 
 import AppContext from "../../store/context";
 
+import PlayButton from "../PlayButton";
 export default function CardItem({ item }) {
   const { state, dispatch } = useContext(AppContext);
+  const [playVideo, setPlayVideo] = useState(false);
 
   const [active, setactive] = useState();
   const { apiConfig } = state;
 
   const content = (
     <div>
-      Title
-      <Button primary>Add</Button>
-      <Button>View</Button>
+      <PlayButton setPlayVideo={setPlayVideo} />
     </div>
   );
   return (
