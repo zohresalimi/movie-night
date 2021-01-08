@@ -1,6 +1,6 @@
 const state = {
   movies: [],
-  watchLater: {},
+  watchLaterList: {},
   favoriteList: {},
   apiConfig: {},
 };

@@ -14,16 +14,18 @@ import AppContext from "../../store/context";
 import {
   SET_TO_FAVORITE_LIST,
   REMOVE_FROM_FAVORITE_LIST,
+  SET_TO_WATCHLATER_LIST,
+  REMOVE_FROM_WATCHLATER_LIST,
 } from "../../constants";
 import "./style.css";
 
 import PlayButton from "../PlayButton";
 export default function CardItem({ item }) {
   const { state, dispatch } = useContext(AppContext);
-  const { favoriteList } = state;
+  const { favoriteList, watchLaterList } = state;
   const [playVideo, setPlayVideo] = useState(false);
   const [isFavorite, setIsFavorite] = useState(() => !!favoriteList[item.id]);
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState(() => !!watchLaterList[item.id]);
   const [messageVisible, setMessageVisible] = useState(false);
   const [message, setMesage] = useState("");
 
@@ -39,6 +41,17 @@ export default function CardItem({ item }) {
       showMessage("Movie removed from the Favorit List");
     }
     setIsFavorite(!isFavorite);
+  };
+
+  const ToggleWathList = () => {
+    if (!watchLaterList[item.id]) {
+      dispatch({ type: SET_TO_WATCHLATER_LIST, data: item });
+      showMessage("Movie Added to the Watch Later List");
+    } else {
+      dispatch({ type: REMOVE_FROM_WATCHLATER_LIST, data: item });
+      showMessage("Movie removed from the Watch Later");
+    }
+    setIsSaved(!isSaved);
   };
 
   const handleDismiss = () => {
@@ -63,7 +76,12 @@ export default function CardItem({ item }) {
             basic
             onClick={ToggleFavoriteList}
           />
-          <Button icon="clock" />
+          <Button
+            icon="clock"
+            color={isSaved ? "yellow" : ""}
+            basic
+            onClick={ToggleWathList}
+          />
         </Button.Group>
       </div>
     </div>
