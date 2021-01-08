@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-
+import React, { useState, useContext, useEffect } from "react";
+import axiosInstance from "../../services";
 import {
   Card,
   Image,
@@ -7,22 +7,26 @@ import {
   Button,
   Message,
   Transition,
+  Modal,
+  Embed,
 } from "semantic-ui-react";
 
 import AppContext from "../../store/context";
+import PlayButton from "../PlayButton";
 
 import {
   SET_TO_FAVORITE_LIST,
   REMOVE_FROM_FAVORITE_LIST,
   SET_TO_WATCHLATER_LIST,
   REMOVE_FROM_WATCHLATER_LIST,
+  SET_VIDEO_SOURCE,
 } from "../../constants";
+
 import "./style.css";
 
-import PlayButton from "../PlayButton";
 export default function CardItem({ item }) {
   const { state, dispatch } = useContext(AppContext);
-  const { favoriteList, watchLaterList } = state;
+  const { favoriteList, watchLaterList, movies } = state;
   const [playVideo, setPlayVideo] = useState(false);
   const [isFavorite, setIsFavorite] = useState(() => !!favoriteList[item.id]);
   const [isSaved, setIsSaved] = useState(() => !!watchLaterList[item.id]);
@@ -32,6 +36,7 @@ export default function CardItem({ item }) {
   const [active, setactive] = useState();
   const { apiConfig } = state;
 
+  const movieTrailerUrl = process.env.REACT_APP_GET_MOVIE_TRAILER_URL;
   const ToggleFavoriteList = () => {
     if (!favoriteList[item.id]) {
       dispatch({ type: SET_TO_FAVORITE_LIST, data: item });
@@ -65,9 +70,25 @@ export default function CardItem({ item }) {
     setMessageVisible(true);
     handleDismiss();
   };
+
+  const fetchMovieTrailer = async () => {
+    try {
+      const result = await axiosInstance.get(
+        `${movieTrailerUrl}/${item.id}/videos`
+      );
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handelClick = () => {
+    fetchMovieTrailer();
+  };
+
   const content = (
     <div>
-      <PlayButton setPlayVideo={setPlayVideo} />
+      <PlayButton setPlayVideo={setPlayVideo} onClick={handelClick} />
       <div className="tools-wrapper">
         <Button.Group vertical basic size="small">
           <Button
@@ -108,6 +129,27 @@ export default function CardItem({ item }) {
         <Transition visible={messageVisible} animation="fade" duration={500}>
           <Message color="blue" size="huge" content={message} />
         </Transition>
+      )}
+
+      {playVideo && (
+        <Modal
+          basic
+          onClose={() => setPlayVideo(false)}
+          defaultOpen
+          size="small"
+        >
+          <Modal.Content>
+            <p>
+              Your inbox is getting full, would you like us to enable automatic
+              archiving of old messages?
+            </p>
+            <Embed
+              id="mHc7z-Ks6dg"
+              placeholder="/images/image-16by9.png"
+              source="youtube"
+            />
+          </Modal.Content>
+        </Modal>
       )}
     </div>
   );

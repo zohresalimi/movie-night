@@ -1,24 +1,13 @@
 import React, { useState, useMemo, useContext } from "react";
 import { Input } from "semantic-ui-react";
-import axios from "axios";
+// import axios from "axios";
+import axiosInstance from "../../services";
 import debounce from "../../utils/debounce";
 import AppContext from "../../store/context";
 
 import { SET_MOVIES_REDUCER } from "../../constants";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
-const apiKey = process.env.REACT_APP_API_Key;
-
-const axiosInstance = axios.create({
-  baseURL,
-});
-axiosInstance.interceptors.request.use((config) => {
-  config.params = {
-    api_key: apiKey,
-    ...config.params,
-  };
-  return config;
-});
 
 export default function SearchInput() {
   const { dispatch } = useContext(AppContext);
@@ -28,7 +17,7 @@ export default function SearchInput() {
   const fetchData = async (value) => {
     try {
       setIsLoading(true);
-      const result = await axiosInstance.get("/", {
+      const result = await axiosInstance.get(baseURL, {
         params: { query: value },
       });
       if (result) {
