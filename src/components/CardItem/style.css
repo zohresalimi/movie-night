@@ -1,6 +1,5 @@
 .card .tools-wrapper {
   font-size: 14px;
-  color: #fff;
   position: absolute;
   z-index: 10;
   display: flex;
@@ -9,7 +8,7 @@
   align-items: center;
   top: 15px;
   left: 15px;
-  background-color: #d4d4d5;
+  background-color: #fff;
   border-radius: 2px;
 }
 
@@ -21,4 +20,15 @@
   box-shadow: none;
   border: 0;
   padding: 0;
+}
+
+/* .card .tools-wrapper .ui.icon.button.isFavorite {
+  color: #fd6060;
+} */
+
+.card-wrapper .ui.message {
+  position: fixed;
+  top: 10px;
+  left: 25%;
+  z-index: 10;
 }

@@ -3,41 +3,73 @@ import React, { useState, useContext } from "react";
 import {
   Card,
   Image,
-  Segment,
   Dimmer,
   Button,
-  Label,
-  Icon,
-  Popup,
+  Message,
+  Transition,
 } from "semantic-ui-react";
 
 import AppContext from "../../store/context";
 
+import {
+  SET_TO_FAVORITE_LIST,
+  REMOVE_FROM_FAVORITE_LIST,
+} from "../../constants";
 import "./style.css";
 
 import PlayButton from "../PlayButton";
 export default function CardItem({ item }) {
   const { state, dispatch } = useContext(AppContext);
+  const { favoriteList } = state;
   const [playVideo, setPlayVideo] = useState(false);
-  const [favoriteList, setFavoriteList] = useState(false);
-  const [watchLaterList, setWatchLaterList] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(() => !!favoriteList[item.id]);
+  const [isSaved, setIsSaved] = useState(false);
+  const [messageVisible, setMessageVisible] = useState(false);
+  const [message, setMesage] = useState("");
 
   const [active, setactive] = useState();
   const { apiConfig } = state;
 
+  const ToggleFavoriteList = () => {
+    if (!favoriteList[item.id]) {
+      dispatch({ type: SET_TO_FAVORITE_LIST, data: item });
+      showMessage("Movie Added to the Favorit List");
+    } else {
+      dispatch({ type: REMOVE_FROM_FAVORITE_LIST, data: item });
+      showMessage("Movie removed from the Favorit List");
+    }
+    setIsFavorite(!isFavorite);
+  };
+
+  const handleDismiss = () => {
+    setTimeout(() => {
+      setMessageVisible(false);
+    }, 2000);
+  };
+
+  const showMessage = (text) => {
+    setMesage(text);
+    setMessageVisible(true);
+    handleDismiss();
+  };
   const content = (
     <div>
       <PlayButton setPlayVideo={setPlayVideo} />
       <div className="tools-wrapper">
         <Button.Group vertical basic size="small">
-          <Button icon="star" />
+          <Button
+            icon="star"
+            color={isFavorite ? "yellow" : ""}
+            basic
+            onClick={ToggleFavoriteList}
+          />
           <Button icon="clock" />
         </Button.Group>
       </div>
     </div>
   );
   return (
-    <div>
+    <div className="card-wrapper">
       <Card>
         <Dimmer.Dimmable
           as={Image}
@@ -54,6 +86,11 @@ export default function CardItem({ item }) {
           <Card.Header>{item.title}</Card.Header>
         </Card.Content>
       </Card>
+      {messageVisible && (
+        <Transition visible={messageVisible} animation="fade" duration={500}>
+          <Message color="blue" size="huge" content={message} />
+        </Transition>
+      )}
     </div>
   );
 }
