@@ -5,6 +5,8 @@ import AppContext from "./store/context";
 import store from "./store";
 // pages
 import SearchPage from "./pages/SearchPage";
+import SideBar from "./components/SideBar";
+
 import axiosInstance from "./services";
 
 import { SET_CONFIG_REDUCER } from "./constants";
@@ -37,6 +39,7 @@ function App() {
         <AppContext.Provider value={{ state, dispatch }}>
           Movie Night
           <SearchPage />
+          <SideBar />
         </AppContext.Provider>
       </Container>
     </div>
