@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Grid } from "semantic-ui-react";
 
 import AppContext from "../../store/context";
@@ -6,7 +6,7 @@ import AppContext from "../../store/context";
 import CardItem from "../CardItem";
 
 export default function MovieList() {
-  const { state, dispatch } = useContext(AppContext);
+  const { state } = useContext(AppContext);
 
   return (
     <div>

@@ -1,17 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import {
-  Button,
-  Checkbox,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Menu,
-  Segment,
-  Sidebar,
-  Container,
-} from "semantic-ui-react";
+import { Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 
 import SearchPage from "../../pages/SearchPage";
 import WatchLaterPage from "../../pages/WatchLaterPage";
