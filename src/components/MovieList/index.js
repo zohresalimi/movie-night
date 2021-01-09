@@ -11,9 +11,9 @@ export default function MovieList() {
   return (
     <div>
       <Grid>
-        {state.movies && state.movies.results && (
+        {state.movies[state.activePage] && (
           <Grid.Row>
-            {state.movies.results.map((item) => (
+            {state.movies[state.activePage].results.map((item) => (
               <Grid.Column mobile={16} tablet={8} computer={4} key={item.id}>
                 <CardItem item={item} />
               </Grid.Column>

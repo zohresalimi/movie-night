@@ -5,15 +5,41 @@ import {
   REMOVE_FROM_FAVORITE_LIST,
   SET_TO_WATCHLATER_LIST,
   REMOVE_FROM_WATCHLATER_LIST,
+  SET_VIDEO_SOURCE,
 } from "../constants";
 
+const setMovies = (state, data) => {
+  return {
+    ...state,
+    movies: {
+      [data.page]: data,
+    },
+  };
+};
+
+const setVideoSourceToMovie = (state, { result, selected }) => {
+  return {
+    ...state,
+    movies: {
+      ...state.movies,
+      [state.activePage]: {
+        ...state.movies[state.activePage],
+        results: state.movies[state.activePage].results.map((movie) => {
+          if (movie.id === selected.id) {
+            movie.trailerKey = result.key;
+            movie.trailerSite = result.site.toLowerCase();
+          }
+
+          return movie;
+        }),
+      },
+    },
+  };
+};
 const reducer = (state, action) => {
   switch (action.type) {
     case SET_MOVIES_REDUCER:
-      return {
-        ...state,
-        movies: action.data,
-      };
+      return setMovies(state, action.data);
     case SET_CONFIG_REDUCER:
       return {
         ...state,
@@ -57,6 +83,8 @@ const reducer = (state, action) => {
         ...state,
         watchLaterList,
       };
+    case SET_VIDEO_SOURCE:
+      return setVideoSourceToMovie(state, action.data);
     default:
       return state;
   }

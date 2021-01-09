@@ -26,17 +26,19 @@ import "./style.css";
 
 export default function CardItem({ item }) {
   const { state, dispatch } = useContext(AppContext);
-  const { favoriteList, watchLaterList, movies } = state;
+  const { favoriteList, watchLaterList } = state;
   const [playVideo, setPlayVideo] = useState(false);
   const [isFavorite, setIsFavorite] = useState(() => !!favoriteList[item.id]);
   const [isSaved, setIsSaved] = useState(() => !!watchLaterList[item.id]);
   const [messageVisible, setMessageVisible] = useState(false);
   const [message, setMesage] = useState("");
+  const [showDetail, setShowDetail] = useState(true);
 
   const [active, setactive] = useState();
   const { apiConfig } = state;
 
   const movieTrailerUrl = process.env.REACT_APP_GET_MOVIE_TRAILER_URL;
+
   const ToggleFavoriteList = () => {
     if (!favoriteList[item.id]) {
       dispatch({ type: SET_TO_FAVORITE_LIST, data: item });
@@ -71,24 +73,36 @@ export default function CardItem({ item }) {
     handleDismiss();
   };
 
-  const fetchMovieTrailer = async () => {
-    try {
-      const result = await axiosInstance.get(
-        `${movieTrailerUrl}/${item.id}/videos`
-      );
-      console.log(result);
-    } catch (err) {
-      console.log(err);
+  useEffect(() => {
+    const fetchMovieTrailer = async () => {
+      debugger;
+      try {
+        const result = await axiosInstance.get(
+          `${movieTrailerUrl}/${item.id}/videos`
+        );
+        console.log(result);
+        if (result && result.data.results.length) {
+          dispatch({
+            type: SET_VIDEO_SOURCE,
+            data: { result: result.data.results[0], selected: item },
+          });
+          setPlayVideo(true);
+          setShowDetail(true);
+        } else {
+          setShowDetail(false);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (playVideo && !item.trailerKey) {
+      fetchMovieTrailer();
     }
-  };
-
-  const handelClick = () => {
-    fetchMovieTrailer();
-  };
+  }, [dispatch, item, movieTrailerUrl, playVideo]);
 
   const content = (
     <div>
-      <PlayButton setPlayVideo={setPlayVideo} onClick={handelClick} />
+      <PlayButton setPlayVideo={setPlayVideo} />
       <div className="tools-wrapper">
         <Button.Group vertical basic size="small">
           <Button
@@ -119,7 +133,7 @@ export default function CardItem({ item }) {
           ui={false}
           wrapped
           size="small"
-          src={`${apiConfig.secure_base_url}/${apiConfig.poster_sizes[4]}/${item.poster_path}`}
+          src={`${apiConfig.secure_base_url}${apiConfig.poster_sizes[4]}/${item.poster_path}`}
         />
         <Card.Content>
           <Card.Header>{item.title}</Card.Header>
@@ -131,26 +145,30 @@ export default function CardItem({ item }) {
         </Transition>
       )}
 
-      {playVideo && (
-        <Modal
-          basic
-          onClose={() => setPlayVideo(false)}
-          defaultOpen
-          size="small"
-        >
-          <Modal.Content>
-            <p>
-              Your inbox is getting full, would you like us to enable automatic
-              archiving of old messages?
-            </p>
+      <Modal
+        basic
+        onClose={() => setPlayVideo(false)}
+        open={playVideo}
+        size="small"
+      >
+        <Modal.Content>
+          {showDetail ? (
             <Embed
-              id="mHc7z-Ks6dg"
-              placeholder="/images/image-16by9.png"
-              source="youtube"
+              id={item.trailerKey}
+              autoplay
+              placeholder={`${apiConfig.secure_base_url}${apiConfig.poster_sizes[4]}/${item.backdrop_path}`}
+              source={item.trailerSite}
             />
-          </Modal.Content>
-        </Modal>
-      )}
+          ) : (
+            <Message
+              negative
+              icon="search"
+              header="No Reasults"
+              content="There is no Trailer for this Movie."
+            />
+          )}
+        </Modal.Content>
+      </Modal>
     </div>
   );
 }

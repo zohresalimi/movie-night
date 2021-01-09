@@ -1,5 +1,6 @@
 const state = {
-  movies: [],
+  activePage: 1,
+  movies: {},
   watchLaterList: {},
   favoriteList: {},
   apiConfig: {},
