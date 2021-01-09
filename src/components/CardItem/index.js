@@ -99,7 +99,6 @@ export default function CardItem({ item }) {
       fetchMovieTrailer();
     }
   }, [dispatch, item, movieTrailerUrl, playVideo]);
-
   const content = (
     <div>
       <PlayButton setPlayVideo={setPlayVideo} />
