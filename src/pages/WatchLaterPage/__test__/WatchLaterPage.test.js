@@ -18,7 +18,7 @@ async function renderWrapper() {
   return component;
 }
 
-describe.only("WatchLater Page Component Testing", () => {
+describe("WatchLater Page Component Testing", () => {
   test("loads items", async () => {
     const { container } = await renderWrapper();
     expect(container).toMatchSnapshot();
