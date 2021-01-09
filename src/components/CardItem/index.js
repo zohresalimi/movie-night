@@ -75,7 +75,6 @@ export default function CardItem({ item }) {
 
   useEffect(() => {
     const fetchMovieTrailer = async () => {
-      debugger;
       try {
         const result = await axiosInstance.get(
           `${movieTrailerUrl}/${item.id}/videos`

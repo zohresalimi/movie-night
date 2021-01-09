@@ -8,15 +8,6 @@ import {
   SET_VIDEO_SOURCE,
 } from "../constants";
 
-const setMovies = (state, data) => {
-  return {
-    ...state,
-    movies: {
-      [data.page]: data,
-    },
-  };
-};
-
 const setVideoSourceToMovie = (state, { result, selected }) => {
   return {
     ...state,
@@ -36,10 +27,16 @@ const setVideoSourceToMovie = (state, { result, selected }) => {
     },
   };
 };
+
 const reducer = (state, action) => {
   switch (action.type) {
     case SET_MOVIES_REDUCER:
-      return setMovies(state, action.data);
+      return {
+        ...state,
+        movies: {
+          [action.data.page]: action.data,
+        },
+      };
     case SET_CONFIG_REDUCER:
       return {
         ...state,
