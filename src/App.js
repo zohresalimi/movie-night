@@ -1,15 +1,18 @@
 import React, { useReducer, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
 import AppContext from "./store/context";
 import store from "./store";
 // pages
 import SearchPage from "./pages/SearchPage";
+import WatchLaterPage from "./pages/WatchLaterPage";
 import SideBar from "./components/SideBar";
 
 import axiosInstance from "./services";
 
 import { SET_CONFIG_REDUCER } from "./constants";
+import MovieList from "./components/MovieList";
 
 const baseConfigURL = process.env.REACT_APP_BASE_CONFIG_URL;
 
@@ -35,13 +38,10 @@ function App() {
 
   return (
     <div className="App">
-      <Container>
-        <AppContext.Provider value={{ state, dispatch }}>
-          Movie Night
-          <SearchPage />
-          <SideBar />
-        </AppContext.Provider>
-      </Container>
+      <AppContext.Provider value={{ state, dispatch }}>
+        Movie Night
+        <SideBar></SideBar>
+      </AppContext.Provider>
     </div>
   );
 }
