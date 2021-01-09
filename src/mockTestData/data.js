@@ -48,7 +48,7 @@ export const getTestState = () => {
 export const WithProvider = (props) => {
   const [state, dispatch] = useReducer(
     reducer,
-    props.defaultValue || getTestStore()
+    props.defaultValue || getTestState()
   );
 
   return (

@@ -7,6 +7,7 @@ import CardItem from "../../components/CardItem";
 export default function WatchLaterPage() {
   const { state } = useContext(AppContext);
   const { watchLaterList } = state;
+
   return (
     <div>
       <Grid>
