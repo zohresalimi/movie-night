@@ -6,7 +6,7 @@ import {
   Dimmer,
   Button,
   Message,
-  Transition,
+  Placeholder,
   Modal,
   Embed,
 } from "semantic-ui-react";
@@ -23,6 +23,7 @@ import {
 } from "../../constants";
 
 import "./style.css";
+import defaultImage from "../../images/default-image.png";
 
 export default function CardItem({ item }) {
   const { state, dispatch } = useContext(AppContext);
@@ -131,17 +132,18 @@ export default function CardItem({ item }) {
           ui={false}
           wrapped
           size="small"
-          src={`${apiConfig.secure_base_url}${apiConfig.poster_sizes[4]}/${item.poster_path}`}
+          src={
+            item.poster_path
+              ? `${apiConfig.secure_base_url}${apiConfig.poster_sizes[4]}/${item.poster_path}`
+              : defaultImage
+          }
         />
         <Card.Content>
           <Card.Header>{item.title}</Card.Header>
         </Card.Content>
       </Card>
-      {messageVisible && (
-        <Transition visible={messageVisible} animation="fade" duration={500}>
-          <Message color="blue" size="huge" content={message} />
-        </Transition>
-      )}
+
+      {messageVisible && <Message color="blue" size="huge" content={message} />}
 
       <Modal
         basic

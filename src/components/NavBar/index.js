@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Icon,
-  Image,
-  Menu,
-  Sidebar,
-  Responsive,
-} from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import NavBarMobile from "../NavBarMobile";
 import NavBarDesktop from "../NavBarDesktop";
 
-export default function NavBar(props) {
+export default function NavBar() {
   const [visible, setVisible] = useState(false);
   const handleToggle = () => setVisible(!visible);
   const handlePusher = () => {
