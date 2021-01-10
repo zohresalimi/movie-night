@@ -1,11 +1,16 @@
-import React, { useReducer, useEffect, useState } from "react";
+import React, { useReducer, useEffect } from "react";
 import { Container, Grid } from "semantic-ui-react";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import axiosInstance from "./services";
 
 import AppContext from "./store/context";
 import store from "./store";
+
 // pages
+import SearchPage from "./pages/SearchPage";
+import WatchLaterPage from "./pages/WatchLaterPage";
 
 import NavBar from "./components/NavBar";
 
@@ -35,7 +40,18 @@ function App() {
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       <Container>
-        <NavBar />
+        <Router>
+          <NavBar />
+
+          <Grid>
+            <Grid.Column width={16}>
+              <Switch>
+                <Route exact path="/" component={SearchPage}></Route>
+                <Route path="/watch-later" component={WatchLaterPage}></Route>
+              </Switch>
+            </Grid.Column>
+          </Grid>
+        </Router>
       </Container>
     </AppContext.Provider>
   );

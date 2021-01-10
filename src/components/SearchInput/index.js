@@ -1,8 +1,7 @@
-import React, { useState, useMemo, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Input, Segment } from "semantic-ui-react";
 // import axios from "axios";
 import axiosInstance from "../../services";
-import debounce from "../../utils/debounce";
 import AppContext from "../../store/context";
 
 import { SET_MOVIES_REDUCER, EMPTY_SEARCH_RESULT } from "../../constants";
@@ -19,6 +18,7 @@ export default function SearchInput() {
 
   useEffect(() => {
     let mounted = true;
+    let fetchTimeout;
     const fetchData = async () => {
       try {
         setIsLoading(true);
@@ -39,16 +39,19 @@ export default function SearchInput() {
     };
 
     if (searchTerm) {
-      fetchData();
+      fetchTimeout = setTimeout(fetchData, 400);
     }
-    return () => (mounted = false);
+
+    return () => {
+      clearTimeout(fetchTimeout);
+      mounted = false;
+    };
   }, [searchTerm, dispatch]);
 
   const handelInputChange = (value) => {
+    setSearchTerm(value);
     if (!value) {
       dispatch({ type: EMPTY_SEARCH_RESULT });
-    } else {
-      setSearchTerm(value);
     }
   };
   return (
@@ -56,7 +59,7 @@ export default function SearchInput() {
       <Input
         icon="search"
         loading={isLoading}
-        placeholder="Search Movie ..."
+        placeholder="Search by movie name!"
         value={searchTerm}
         onChange={(e) => handelInputChange(e.target.value)}
         className="full-width"
