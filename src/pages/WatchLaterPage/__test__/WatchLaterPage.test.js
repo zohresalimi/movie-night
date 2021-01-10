@@ -20,7 +20,9 @@ async function renderWrapper() {
 
 describe("WatchLater Page Component Testing", () => {
   test("loads items", async () => {
-    const { container } = await renderWrapper();
+    const { container, getByTestId } = await renderWrapper();
+    expect(getByTestId("watch-later-page-wrapper")).toBeInTheDocument();
+
     expect(container).toMatchSnapshot();
   });
 });

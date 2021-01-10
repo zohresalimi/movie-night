@@ -10,7 +10,7 @@ export default function WatchLaterPage() {
 
   return (
     <div>
-      <Grid>
+      <Grid data-testid="watch-later-page-wrapper">
         {watchLaterList && (
           <Grid.Row>
             {Object.keys(watchLaterList).map((item) => (

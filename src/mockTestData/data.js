@@ -57,6 +57,8 @@ export const WithProvider = (props) => {
         state,
         dispatch: props.mockDispatch || dispatch,
       }}
-    ></AppContext.Provider>
+    >
+      {props.children}
+    </AppContext.Provider>
   );
 };

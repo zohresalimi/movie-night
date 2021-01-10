@@ -105,13 +105,13 @@ export default function CardItem({ item }) {
         <Button.Group vertical basic size="small">
           <Button
             icon="star"
-            color={isFavorite ? "yellow" : ""}
+            color={isFavorite ? "yellow" : "grey"}
             basic
             onClick={ToggleFavoriteList}
           />
           <Button
             icon="clock"
-            color={isSaved ? "yellow" : ""}
+            color={isSaved ? "yellow" : "grey"}
             basic
             onClick={ToggleWathList}
           />
@@ -153,7 +153,6 @@ export default function CardItem({ item }) {
           {showDetail ? (
             <Embed
               id={item.trailerKey}
-              autoplay
               placeholder={`${apiConfig.secure_base_url}${apiConfig.poster_sizes[4]}/${item.backdrop_path}`}
               source={item.trailerSite}
             />

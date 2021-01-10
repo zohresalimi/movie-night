@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WatchLater Page Component Testing loads items 1`] = `
+exports[`MovieList Component Testing take snapshot 1`] = `
 <div>
   <div>
     <div
       class="ui grid"
-      data-testid="watch-later-page-wrapper"
+      data-testid="watch-list-wrapper"
     >
       <div
         class="row"
@@ -70,6 +70,78 @@ exports[`WatchLater Page Component Testing loads items 1`] = `
                 </div>
                 <img
                   src="https://image.tmdb.org/t/p/w500//nJm8UF4zbUYEoku9seEtz1PTJGS.jpg"
+                />
+              </div>
+              <div
+                class="content"
+              >
+                <div
+                  class="header"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="four wide computer sixteen wide mobile eight wide tablet column"
+        >
+          <div
+            class="card-wrapper"
+          >
+            <div
+              class="ui card"
+            >
+              <div
+                class="small image dimmable"
+              >
+                <div
+                  class="ui dimmer"
+                >
+                  <div
+                    class="content"
+                  >
+                    <div>
+                      <button
+                        data-testid="play-btn"
+                      >
+                        <a
+                          class="sc-bdfBwQ gaGgLj"
+                        >
+                          <i
+                            aria-hidden="true"
+                            class="play mini icon"
+                          />
+                        </a>
+                      </button>
+                      <div
+                        class="tools-wrapper"
+                      >
+                        <div
+                          class="ui small basic vertical buttons"
+                        >
+                          <button
+                            class="ui grey basic icon button"
+                          >
+                            <i
+                              aria-hidden="true"
+                              class="star icon"
+                            />
+                          </button>
+                          <button
+                            class="ui grey basic icon button"
+                          >
+                            <i
+                              aria-hidden="true"
+                              class="clock icon"
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <img
+                  src="https://image.tmdb.org/t/p/w500//PlzkOA19mxEit7tV3AUnBYZ0io.jpg"
                 />
               </div>
               <div

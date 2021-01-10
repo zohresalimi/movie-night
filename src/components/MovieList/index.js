@@ -10,7 +10,7 @@ export default function MovieList() {
 
   return (
     <div>
-      <Grid>
+      <Grid data-testid="watch-list-wrapper">
         {state.movies[state.activePage] && (
           <Grid.Row>
             {state.movies[state.activePage].results.map((item) => (

@@ -1,12 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Search Page Component Testing loads items 1`] = `
-<div>
-  <div>
-    SearchInpput Component
+<div
+  class="ui stackable grid"
+  id="home"
+>
+  <div
+    class="row"
+  >
+    <div>
+      SearchInpput Component
+    </div>
   </div>
-  <div>
-    MovieList Component
+  <div
+    class="row"
+  >
+    <div>
+      MovieList Component
+    </div>
   </div>
 </div>
 `;
