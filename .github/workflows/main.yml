@@ -16,6 +16,9 @@ jobs:
       - uses: actions/checkout@v2
         name: Checkout branch
 
+      - name: Install
+        run: yarn
+
       - name: Test
         run: yarn test
 
