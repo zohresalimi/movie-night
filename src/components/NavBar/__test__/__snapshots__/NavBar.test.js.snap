@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar Component Testing match snapshot if visible is true 1`] = `
+<div>
+  <div
+    class="ui one column grid"
+  >
+    <div
+      class="mobile only row"
+    >
+      <div
+        class="column"
+      >
+        <div
+          visible="true"
+        >
+          Navbar Mobile
+        </div>
+      </div>
+    </div>
+    <div
+      class="computer only tablet only row"
+    >
+      <div
+        class="column"
+      >
+        <div>
+          Navbar Desktop
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NavBar Component Testing take snapshot 1`] = `
+<div>
+  <div
+    class="ui one column grid"
+  >
+    <div
+      class="mobile only row"
+    >
+      <div
+        class="column"
+      >
+        <div
+          visible="false"
+        >
+          Navbar Mobile
+        </div>
+      </div>
+    </div>
+    <div
+      class="computer only tablet only row"
+    >
+      <div
+        class="column"
+      >
+        <div>
+          Navbar Desktop
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

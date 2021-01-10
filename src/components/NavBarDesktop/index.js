@@ -35,6 +35,7 @@ export default function NavBarDesktop() {
                 as={Link}
                 to="/favorites"
                 name="favorites"
+                data-testid="favorites"
                 active={activeItem === "favorites"}
                 onClick={() => setActiveItem("favorites")}
               >

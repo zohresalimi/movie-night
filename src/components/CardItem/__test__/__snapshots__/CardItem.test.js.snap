@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardItem Component Testing take snapshot 1`] = `
+<div>
+  <div
+    class="card-wrapper"
+  >
+    <div
+      class="ui card"
+    >
+      <div
+        class="small image dimmable"
+      >
+        <div
+          class="ui dimmer"
+        >
+          <div
+            class="content"
+          >
+            <div>
+              <button
+                data-testid="play-btn"
+              >
+                <a
+                  class="sc-bdfBwQ gaGgLj"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="play mini icon"
+                  />
+                </a>
+              </button>
+              <div
+                class="tools-wrapper"
+              >
+                <div
+                  class="ui small basic vertical buttons"
+                >
+                  <button
+                    class="ui grey basic icon button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="star icon"
+                    />
+                  </button>
+                  <button
+                    class="ui grey basic icon button"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="clock icon"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img
+          src="default-image.png"
+        />
+      </div>
+      <div
+        class="content"
+      >
+        <div
+          class="header"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

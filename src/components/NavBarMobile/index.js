@@ -45,6 +45,7 @@ export default function NavBarMobile() {
                 as={Link}
                 to="/watch-later"
                 name="watch later"
+                data-testid="watch-later"
                 active={active === "watch later"}
                 onClick={handleItemClick}
               >

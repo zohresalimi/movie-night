@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBarMobile Component Testing match snapshot if active item is changed 1`] = `
+<div>
+  <div
+    class="ui one column grid"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="ui inverted top fixed menu"
+      >
+        <a
+          class="item"
+        >
+          <i
+            aria-hidden="true"
+            class="sidebar icon"
+          />
+        </a>
+      </div>
+      <div
+        class="column"
+      >
+        <div
+          class="ui inverted vertical labeled icon ui overlay left thin sidebar menu"
+        >
+          <a
+            class="item"
+            href="/"
+          >
+            <i
+              aria-hidden="true"
+              class="search icon"
+            />
+            Search
+          </a>
+          <a
+            class="active item"
+            data-testid="watch-later"
+            href="/watch-later"
+          >
+            <i
+              aria-hidden="true"
+              class="clock icon"
+            />
+            Watch Later
+          </a>
+          <a
+            class="item"
+            href="/favorites"
+          >
+            <i
+              aria-hidden="true"
+              class="star icon"
+            />
+            Favorites
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NavBarMobile Component Testing take snapshot 1`] = `
+<div>
+  <div
+    class="ui one column grid"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="ui inverted top fixed menu"
+      >
+        <a
+          class="item"
+        >
+          <i
+            aria-hidden="true"
+            class="sidebar icon"
+          />
+        </a>
+      </div>
+      <div
+        class="column"
+      >
+        <div
+          class="ui inverted vertical labeled icon ui overlay left thin sidebar menu"
+        >
+          <a
+            class="active item"
+            href="/"
+          >
+            <i
+              aria-hidden="true"
+              class="search icon"
+            />
+            Search
+          </a>
+          <a
+            class="item"
+            data-testid="watch-later"
+            href="/watch-later"
+          >
+            <i
+              aria-hidden="true"
+              class="clock icon"
+            />
+            Watch Later
+          </a>
+          <a
+            class="item"
+            href="/favorites"
+          >
+            <i
+              aria-hidden="true"
+              class="star icon"
+            />
+            Favorites
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

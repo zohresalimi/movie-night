@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MovieList Component Testing should match snapshot if result is empty 1`] = `
+<div>
+  <div>
+    <div
+      class="ui grid"
+      data-testid="watch-list-wrapper"
+    />
+  </div>
+</div>
+`;
+
 exports[`MovieList Component Testing take snapshot 1`] = `
 <div>
   <div>

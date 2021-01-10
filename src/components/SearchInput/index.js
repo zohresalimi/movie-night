@@ -20,6 +20,8 @@ export default function SearchInput() {
     let mounted = true;
     let fetchTimeout;
     const fetchData = async () => {
+      console.log("fetch data >>>>>>>>>>>>>>>>>");
+
       try {
         setIsLoading(true);
         const result = await axiosInstance.get(baseURL, {
@@ -59,6 +61,7 @@ export default function SearchInput() {
       <Input
         icon="search"
         loading={isLoading}
+        data-testid="search-input"
         placeholder="Search by movie name!"
         value={searchTerm}
         onChange={(e) => handelInputChange(e.target.value)}
@@ -66,6 +69,7 @@ export default function SearchInput() {
       />
       {isError && <div>Something went wrong ...</div>}
       {message && <div>{message}</div>}
+      {isLoading && <div data-testid="loading">Loading...</div>}
     </Segment>
   );
 }

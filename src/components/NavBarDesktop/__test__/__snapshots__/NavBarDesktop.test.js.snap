@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBarDesktop Component Testing match snapshot if active item is changed 1`] = `
+<div>
+  <div
+    class="ui one column grid"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="column"
+      >
+        <div
+          class="ui inverted top fixed menu"
+        >
+          <div
+            class="ui container"
+          >
+            <a
+              class="item"
+              href="/"
+            >
+              <i
+                aria-hidden="true"
+                class="search icon"
+              />
+              Search
+            </a>
+            <a
+              class="item"
+              href="/watch-later"
+            >
+              <i
+                aria-hidden="true"
+                class="clock icon"
+              />
+              Watch Later
+            </a>
+            <a
+              class="active item"
+              data-testid="favorites"
+              href="/favorites"
+            >
+              <i
+                aria-hidden="true"
+                class="star icon"
+              />
+              Favorites
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NavBarDesktop Component Testing take snapshot 1`] = `
+<div>
+  <div
+    class="ui one column grid"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="column"
+      >
+        <div
+          class="ui inverted top fixed menu"
+        >
+          <div
+            class="ui container"
+          >
+            <a
+              class="active item"
+              href="/"
+            >
+              <i
+                aria-hidden="true"
+                class="search icon"
+              />
+              Search
+            </a>
+            <a
+              class="item"
+              href="/watch-later"
+            >
+              <i
+                aria-hidden="true"
+                class="clock icon"
+              />
+              Watch Later
+            </a>
+            <a
+              class="item"
+              data-testid="favorites"
+              href="/favorites"
+            >
+              <i
+                aria-hidden="true"
+                class="star icon"
+              />
+              Favorites
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
