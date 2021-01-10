@@ -5,7 +5,7 @@ import MovieList from "../../components/MovieList";
 
 export default function SearchPage() {
   return (
-    <Grid id="home">
+    <Grid id="home" padded>
       <Grid.Row>
         <SearchInpput />
       </Grid.Row>

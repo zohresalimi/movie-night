@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useContext } from "react";
-import { Input } from "semantic-ui-react";
+import { Input, Segment } from "semantic-ui-react";
 // import axios from "axios";
 import axiosInstance from "../../services";
 import debounce from "../../utils/debounce";
@@ -7,6 +7,7 @@ import AppContext from "../../store/context";
 
 import { SET_MOVIES_REDUCER } from "../../constants";
 
+import "./style.css";
 const baseURL = process.env.REACT_APP_BASE_URL;
 
 export default function SearchInput() {
@@ -33,14 +34,15 @@ export default function SearchInput() {
   const getMoviesByTerms = useMemo(() => debounce(fetchData, 400), []);
 
   return (
-    <div>
+    <Segment basic style={{ width: "100vh" }}>
       <Input
         icon="search"
-        placeholder="Search..."
+        loading={isLoading}
+        placeholder="Search Movie ..."
         onChange={(e) => getMoviesByTerms(e.target.value)}
+        className="full-width"
       />
       {isError && <div>Something went wrong ...</div>}
-      {isLoading ? <div>Loading ...</div> : ""}
-    </div>
+    </Segment>
   );
 }

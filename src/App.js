@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect, useState } from "react";
-import { Container } from "semantic-ui-react";
+import { Container, Grid } from "semantic-ui-react";
 
 import axiosInstance from "./services";
 
@@ -33,14 +33,11 @@ function App() {
     }
   }, [apiConfig.expireTime]);
   return (
-    <div className="App">
+    <AppContext.Provider value={{ state, dispatch }}>
       <Container>
-        <AppContext.Provider value={{ state, dispatch }}>
-          Movie Night
-          <NavBar />
-        </AppContext.Provider>
+        <NavBar />
       </Container>
-    </div>
+    </AppContext.Provider>
   );
 }
 

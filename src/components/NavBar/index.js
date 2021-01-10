@@ -17,19 +17,17 @@ export default function NavBar(props) {
     if (visible) setVisible(false);
   };
   return (
-    <div>
-      <Grid>
-        <Grid.Row columns={2} only="mobile">
-          <NavBarMobile
-            onPusherClick={handlePusher}
-            onToggle={handleToggle}
-            visible={visible}
-          ></NavBarMobile>
-        </Grid.Row>
-        <Grid.Row only="computer tablet">
-          <NavBarDesktop />
-        </Grid.Row>
-      </Grid>
-    </div>
+    <Grid>
+      <Grid.Row columns={2} only="mobile">
+        <NavBarMobile
+          onPusherClick={handlePusher}
+          onToggle={handleToggle}
+          visible={visible}
+        ></NavBarMobile>
+      </Grid.Row>
+      <Grid.Row only="computer tablet">
+        <NavBarDesktop />
+      </Grid.Row>
+    </Grid>
   );
 }
