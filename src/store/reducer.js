@@ -6,6 +6,7 @@ import {
   SET_TO_WATCHLATER_LIST,
   REMOVE_FROM_WATCHLATER_LIST,
   SET_VIDEO_SOURCE,
+  EMPTY_SEARCH_RESULT,
 } from "../constants";
 
 const setVideoSourceToMovie = (state, { result, selected }) => {
@@ -79,6 +80,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         watchLaterList,
+      };
+    case EMPTY_SEARCH_RESULT:
+      return {
+        ...state,
+        movies: {},
       };
     case SET_VIDEO_SOURCE:
       return setVideoSourceToMovie(state, action.data);
