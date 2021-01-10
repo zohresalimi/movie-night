@@ -19,10 +19,26 @@ import { SET_CONFIG_REDUCER } from "./constants";
 import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 
 const baseConfigURL = process.env.REACT_APP_BASE_CONFIG_URL;
+
+/**
+ * Restoring previously store state from localStorage
+ */
 const storedState = getLocalStorage();
 
 function App() {
+  /**
+   * I prefered to go with React Context API to
+   * have a centralized app state, so we will not
+   * lose data when navigating through router and to
+   * avoid prop drilling issues when our component
+   * composition gets deep
+   */
   const [state, dispatch] = useReducer(store.reducer, {
+    /**
+     * Merging cached state, with our initial state
+     * this way, user will see previous data even
+     * after refresh
+     */
     ...store.state,
     ...storedState,
   });
@@ -34,7 +50,12 @@ function App() {
         dispatch({ type: SET_CONFIG_REDUCER, data: result.data.images });
       }
     } catch (err) {
-      console.log(err);
+      /**
+       * This should be handled by showing a proper
+       * error message in appropriate position in the
+       * page
+       */
+      throw new Error(err);
     }
   };
 

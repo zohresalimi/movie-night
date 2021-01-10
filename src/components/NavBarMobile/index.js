@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 
 export default function NavBarMobile() {
   const [isVisible, setIsVisible] = useState(false);
+
+  /**
+   * this value shouldn't have been hard-coded
+   * instead it could be read from a router hook
+   */
   const [active, setActive] = useState("search");
 
   const handleItemClick = (e) => {
