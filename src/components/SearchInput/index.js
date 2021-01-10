@@ -20,8 +20,6 @@ export default function SearchInput() {
     let mounted = true;
     let fetchTimeout;
     const fetchData = async () => {
-      console.log("fetch data >>>>>>>>>>>>>>>>>");
-
       try {
         setIsLoading(true);
         const result = await axiosInstance.get(baseURL, {
