@@ -40,7 +40,7 @@ export default function CardItem({ item }) {
 
   const movieTrailerUrl = process.env.REACT_APP_GET_MOVIE_TRAILER_URL;
 
-  const ToggleFavoriteList = () => {
+  const toggleFavoriteList = () => {
     if (!favoriteList[item.id]) {
       dispatch({ type: SET_TO_FAVORITE_LIST, data: item });
       showMessage("Movie Added to the Favorit List");
@@ -51,7 +51,7 @@ export default function CardItem({ item }) {
     setIsFavorite(!isFavorite);
   };
 
-  const ToggleWathList = () => {
+  const toggleWathList = () => {
     if (!watchLaterList[item.id]) {
       dispatch({ type: SET_TO_WATCHLATER_LIST, data: item });
       showMessage("Movie Added to the Watch Later List");
@@ -80,13 +80,11 @@ export default function CardItem({ item }) {
         const result = await axiosInstance.get(
           `${movieTrailerUrl}/${item.id}/videos`
         );
-        console.log(result);
         if (result && result.data.results.length) {
           dispatch({
             type: SET_VIDEO_SOURCE,
             data: { result: result.data.results[0], selected: item },
           });
-          setPlayVideo(true);
           setShowDetail(true);
         } else {
           setShowDetail(false);
@@ -95,8 +93,12 @@ export default function CardItem({ item }) {
         console.log(err);
       }
     };
-    if (playVideo && !item.trailerKey) {
-      fetchMovieTrailer();
+    if (playVideo) {
+      if (!item.trailerKey) {
+        fetchMovieTrailer();
+      } else {
+        setShowDetail(true);
+      }
     }
   }, [dispatch, item, movieTrailerUrl, playVideo]);
   const content = (
@@ -108,13 +110,13 @@ export default function CardItem({ item }) {
             icon="star"
             color={isFavorite ? "yellow" : "grey"}
             basic
-            onClick={ToggleFavoriteList}
+            onClick={toggleFavoriteList}
           />
           <Button
             icon="clock"
             color={isSaved ? "yellow" : "grey"}
             basic
-            onClick={ToggleWathList}
+            onClick={toggleWathList}
           />
         </Button.Group>
       </div>

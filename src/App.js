@@ -16,11 +16,16 @@ import FavoritePage from "./pages/FavoritePage";
 import NavBar from "./components/NavBar";
 
 import { SET_CONFIG_REDUCER } from "./constants";
+import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 
 const baseConfigURL = process.env.REACT_APP_BASE_CONFIG_URL;
+const storedState = getLocalStorage();
 
 function App() {
-  const [state, dispatch] = useReducer(store.reducer, store.state);
+  const [state, dispatch] = useReducer(store.reducer, {
+    ...store.state,
+    ...storedState,
+  });
   const { apiConfig } = state;
   const fetchConfig = async () => {
     try {
@@ -32,6 +37,10 @@ function App() {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    setLocalStorage("movieNight", state);
+  }, [state]);
 
   useEffect(() => {
     if (!apiConfig.expireTime || apiConfig.expireTime >= new Date().getTime()) {

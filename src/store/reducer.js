@@ -10,22 +10,56 @@ import {
 } from "../constants";
 
 const setVideoSourceToMovie = (state, { result, selected }) => {
+  const movies = {
+    ...state.movies,
+    [state.activePage]: {
+      ...state.movies[state.activePage],
+      results: state.movies[state.activePage].results.map((movie) => {
+        if (movie.id === selected.id) {
+          movie.trailerKey = result.key;
+          movie.trailerSite = result.site.toLowerCase();
+        }
+
+        return movie;
+      }),
+    },
+  };
+
+  /**
+   * Following two blocks will make sure that the same
+   * movie in `favoriteList` and `watchLaterList` get
+   * trailerKey and trailerSite.
+   */
+  const favoriteList = {
+    ...state.favoriteList,
+    ...(state.favoriteList[selected.id]
+      ? {
+          [selected.id]: {
+            ...state.favoriteList[selected.id],
+            trailerKey: result.key,
+            trailerSite: result.site.toLowerCase(),
+          },
+        }
+      : {}),
+  };
+  const watchLaterList = {
+    ...state.watchLaterList,
+    ...(state.watchLaterList[selected.id]
+      ? {
+          [selected.id]: {
+            ...state.watchLaterList[selected.id],
+            trailerKey: result.key,
+            trailerSite: result.site.toLowerCase(),
+          },
+        }
+      : {}),
+  };
+
   return {
     ...state,
-    movies: {
-      ...state.movies,
-      [state.activePage]: {
-        ...state.movies[state.activePage],
-        results: state.movies[state.activePage].results.map((movie) => {
-          if (movie.id === selected.id) {
-            movie.trailerKey = result.key;
-            movie.trailerSite = result.site.toLowerCase();
-          }
-
-          return movie;
-        }),
-      },
-    },
+    movies,
+    favoriteList,
+    watchLaterList,
   };
 };
 
