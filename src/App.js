@@ -12,6 +12,7 @@ import store from "./store";
 import SearchPage from "./pages/SearchPage";
 import WatchLaterPage from "./pages/WatchLaterPage";
 import FavoritePage from "./pages/FavoritePage";
+import Footer from "./components/Footer";
 
 import NavBar from "./components/NavBar";
 
@@ -85,6 +86,9 @@ function App() {
           </Grid>
         </Router>
       </Container>
+      <footer>
+        <Footer />
+      </footer>
     </AppContext.Provider>
   );
 }
