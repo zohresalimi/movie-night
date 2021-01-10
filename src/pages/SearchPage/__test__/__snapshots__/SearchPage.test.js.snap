@@ -2,7 +2,7 @@
 
 exports[`Search Page Component Testing loads items 1`] = `
 <div
-  class="ui stackable grid"
+  class="ui padded grid"
   id="home"
 >
   <div

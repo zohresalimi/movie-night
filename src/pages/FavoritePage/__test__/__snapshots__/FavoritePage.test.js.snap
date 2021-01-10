@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WatchLater Page Component Testing loads items 1`] = `
+exports[`Favorite Page Component Testing loads items 1`] = `
 <div>
   <div
     class="ui grid"
   >
     <div
       class="row"
-      data-testid="watch-later-page-wrapper"
+      data-testid="favorite-page-wrapper"
     >
       <div
         class="four wide computer sixteen wide mobile eight wide tablet column"

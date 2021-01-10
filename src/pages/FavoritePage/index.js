@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Grid, Segment, Header, Icon, Button } from "semantic-ui-react";
+import { Grid, Segment, Header, Icon } from "semantic-ui-react";
 
 import AppContext from "../../store/context";
 import CardItem from "../../components/CardItem";
