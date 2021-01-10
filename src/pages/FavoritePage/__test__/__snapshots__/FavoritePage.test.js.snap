@@ -85,3 +85,34 @@ exports[`Favorite Page Component Testing loads items 1`] = `
   </div>
 </div>
 `;
+
+exports[`Favorite Page Component Testing shows message with icon if favorite list is empty 1`] = `
+<div>
+  <div
+    class="ui grid"
+  >
+    <div
+      class="row"
+      data-testid="favorite-page-wrapper"
+    >
+      <div
+        class="column"
+      >
+        <div
+          class="ui placeholder segment"
+        >
+          <div
+            class="ui icon header"
+          >
+            <i
+              aria-hidden="true"
+              class="film icon"
+            />
+            Favorite list is empty
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

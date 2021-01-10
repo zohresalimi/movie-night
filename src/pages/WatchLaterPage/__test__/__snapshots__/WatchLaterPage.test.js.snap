@@ -85,3 +85,34 @@ exports[`WatchLater Page Component Testing loads items 1`] = `
   </div>
 </div>
 `;
+
+exports[`WatchLater Page Component Testing shows message with icon if watch list is empty 1`] = `
+<div>
+  <div
+    class="ui grid"
+  >
+    <div
+      class="row"
+      data-testid="watch-later-page-wrapper"
+    >
+      <div
+        class="column"
+      >
+        <div
+          class="ui placeholder segment"
+        >
+          <div
+            class="ui icon header"
+          >
+            <i
+              aria-hidden="true"
+              class="film icon"
+            />
+            Watch list is empty
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

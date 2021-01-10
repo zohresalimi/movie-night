@@ -6,6 +6,7 @@ import {
   SET_TO_WATCHLATER_LIST,
   REMOVE_FROM_WATCHLATER_LIST,
   SET_VIDEO_SOURCE,
+  EMPTY_SEARCH_RESULT,
 } from "../../constants";
 import { getTestState } from "../../mockTestData/data";
 
@@ -161,5 +162,19 @@ describe("Test Reducer", () => {
       },
     });
     expect(expectedState.movies).toHaveProperty("trailerKey");
+  });
+
+  test("should empty search result", () => {
+    const state = getTestState();
+
+    const expectedState = {
+      ...state,
+      movies: {},
+    };
+
+    const resultState = reducer(state, {
+      type: EMPTY_SEARCH_RESULT,
+    });
+    expect(resultState).toEqual(expectedState);
   });
 });
