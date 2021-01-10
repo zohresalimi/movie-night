@@ -39,6 +39,12 @@ export default function SearchInput() {
     };
 
     if (searchTerm) {
+      /**
+       * `setTimeout` is used to create a delay
+       * and to give user some time to finish entering
+       * their keyword and avoid calling API
+       * many times by each character
+       */
       fetchTimeout = setTimeout(fetchData, 400);
     }
 
