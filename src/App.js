@@ -1,12 +1,12 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
+
+import axiosInstance from "./services";
 
 import AppContext from "./store/context";
 import store from "./store";
 // pages
 
 import SideBar from "./components/SideBar";
-
-import axiosInstance from "./services";
 
 import { SET_CONFIG_REDUCER } from "./constants";
 
@@ -31,12 +31,11 @@ function App() {
       fetchConfig();
     }
   }, [apiConfig.expireTime]);
-
   return (
     <div className="App">
       <AppContext.Provider value={{ state, dispatch }}>
         Movie Night
-        <SideBar></SideBar>
+        <SideBar />
       </AppContext.Provider>
     </div>
   );
