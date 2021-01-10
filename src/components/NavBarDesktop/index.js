@@ -31,6 +31,16 @@ export default function NavBarDesktop() {
                 <Icon name="clock" />
                 Watch Later
               </Menu.Item>
+              <Menu.Item
+                as={Link}
+                to="/favorites"
+                name="favorites"
+                active={activeItem === "favorites"}
+                onClick={() => setActiveItem("favorites")}
+              >
+                <Icon name="star" />
+                Favorites
+              </Menu.Item>
             </Container>
           </Menu>
         </Grid.Column>

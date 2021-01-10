@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { Grid, Icon, Menu, Sidebar } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-export default function NavBarMobile({ onPusherClick, onToggle, visible }) {
+export default function NavBarMobile() {
   const [isVisible, setIsVisible] = useState(false);
+  const [active, setActive] = useState("search");
+
+  const handleItemClick = (e) => {
+    setActive(e.target.innerText.toLowerCase());
+    setIsVisible(false);
+  };
 
   return (
     <>
@@ -29,7 +35,8 @@ export default function NavBarMobile({ onPusherClick, onToggle, visible }) {
                 as={Link}
                 to="/"
                 name="search"
-                onClick={() => setIsVisible(false)}
+                active={active === "search"}
+                onClick={handleItemClick}
               >
                 <Icon name="search" />
                 Search
@@ -38,10 +45,21 @@ export default function NavBarMobile({ onPusherClick, onToggle, visible }) {
                 as={Link}
                 to="/watch-later"
                 name="watch later"
-                onClick={() => setIsVisible(false)}
+                active={active === "watch later"}
+                onClick={handleItemClick}
               >
                 <Icon name="clock" />
                 Watch Later
+              </Menu.Item>
+              <Menu.Item
+                as={Link}
+                to="/favorites"
+                name="favorites"
+                active={active === "favorites"}
+                onClick={handleItemClick}
+              >
+                <Icon name="star" />
+                Favorites
               </Menu.Item>
             </Sidebar>
           </Grid.Column>

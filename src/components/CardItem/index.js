@@ -6,7 +6,7 @@ import {
   Dimmer,
   Button,
   Message,
-  Placeholder,
+  Loader,
   Modal,
   Embed,
 } from "semantic-ui-react";
@@ -33,7 +33,7 @@ export default function CardItem({ item }) {
   const [isSaved, setIsSaved] = useState(() => !!watchLaterList[item.id]);
   const [messageVisible, setMessageVisible] = useState(false);
   const [message, setMesage] = useState("");
-  const [showDetail, setShowDetail] = useState(true);
+  const [showDetail, setShowDetail] = useState(null);
 
   const [active, setactive] = useState();
   const { apiConfig } = state;
@@ -158,6 +158,8 @@ export default function CardItem({ item }) {
               placeholder={`${apiConfig.secure_base_url}${apiConfig.poster_sizes[4]}/${item.backdrop_path}`}
               source={item.trailerSite}
             />
+          ) : showDetail === null ? (
+            <Loader />
           ) : (
             <Message
               negative

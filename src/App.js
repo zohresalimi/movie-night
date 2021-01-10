@@ -11,6 +11,7 @@ import store from "./store";
 // pages
 import SearchPage from "./pages/SearchPage";
 import WatchLaterPage from "./pages/WatchLaterPage";
+import FavoritePage from "./pages/FavoritePage";
 
 import NavBar from "./components/NavBar";
 
@@ -39,7 +40,7 @@ function App() {
   }, [apiConfig.expireTime]);
   return (
     <AppContext.Provider value={{ state, dispatch }}>
-      <Container>
+      <Container style={{ paddingTop: 40 }}>
         <Router>
           <NavBar />
 
@@ -48,6 +49,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={SearchPage}></Route>
                 <Route path="/watch-later" component={WatchLaterPage}></Route>
+                <Route path="/favorites" component={FavoritePage}></Route>
               </Switch>
             </Grid.Column>
           </Grid>
